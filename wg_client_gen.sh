@@ -13,6 +13,7 @@ dns="10.16.1.1, 8.8.8.8"
 allowed="0.0.0.0/0"
 vpnserver="firewall.hostname.here:51820"
 tunnel="tun_wg0"
+outdir="/tmp/"
 
 #shouldn't have to touch these, this isn't the wild west of like linux distros....  but just incase
 wg="/usr/local/bin/wg"
@@ -31,21 +32,21 @@ clear
 read -p "Enter the file name for output, .conf automatically appended: " filename
 read -p "Enter the last octet of the client static IP: " lastquad
 clear
-fullfile="/tmp/$filename.conf"
+fullfile="$outdir$filename.conf"
 $touch $fullfile
 $chmod 700 $fullfile
 
 
 echo "[Interface]" >$fullfile
-echo "PrivateKey = " $privkey >>$fullfile
-echo "Address = " $network$lastquad/32 >>$fullfile
+echo "PrivateKey = "$privkey >>$fullfile
+echo "Address = "$network$lastquad/32 >>$fullfile
 echo "DNS = "$dns >>$fullfile
 echo >>$fullfile
 echo "[Peer]" >>$fullfile
-echo "PublicKey = " $($wg show $tunnel public-key) >>$fullfile
-echo "PresharedKey = " $presharedkey >>$fullfile
-echo "AllowedIPs = " $allowed >>$fullfile
-echo "Endpoint = " $vpnserver >>$fullfile
+echo "PublicKey = "$($wg show $tunnel public-key) >>$fullfile
+echo "PresharedKey = "$presharedkey >>$fullfile
+echo "AllowedIPs = "$allowed >>$fullfile
+echo "Endpoint = "$vpnserver >>$fullfile
 
 echo "For the firewall administrator."
 echo "Use the following values to add the new peer in the PfSense WG configuration page."
@@ -63,4 +64,5 @@ echo
 echo "###############################################################"
 $cat $fullfile
 
-#EOF
+#If you want to install qrencode on a remote linux machine here is an example on how to generate the mobile png file, adjust as needed
+#$cat $fullfile | ssh user@remoteserver qrencode -o - >$outdir$filename.png
