@@ -4,7 +4,7 @@
 #Tested on pfsense 2.6.0-RELEASE
 #
 #jtbright
-#user defined variables, edit these before running the script. The tunnelpubkey variable is the public key for the tunnel you are setting up, ex tun_wg0
+#user defined variables, edit these before running the script.
 #refer to the wireguard documentation for additional information on these values
 ###############################################################
 
