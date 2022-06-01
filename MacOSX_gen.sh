@@ -61,7 +61,7 @@ echo "Allowed IPs: "$allowed
 echo "###############################################################"
 echo
 echo "For the remote access user."
-echo "Configuration file can be found at "$fullfile
+echo "Configuration file and QR code can be found at "$fullfile
 echo
 echo "###############################################################"
 
