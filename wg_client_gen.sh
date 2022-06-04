@@ -54,7 +54,7 @@ echo "###############################################################"
 echo "Description: "$filename
 echo "Public Key: "$pubkey
 echo "Preshared Key: "$presharedkey
-echo "Allowed IPs: "$allowed
+echo "Allowed IPs: "$network$lastquad/32
 echo "###############################################################"
 echo
 echo "For the remote access user."
